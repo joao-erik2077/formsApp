@@ -1,6 +1,6 @@
 {
-  "name": "ionic-app-base",
-  "version": "0.0.0",
+  "name": "formsApp",
+  "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -56,5 +56,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "typescript": "~4.7.3"
-  }
+  },
+  "description": "An Ionic project"
 }
