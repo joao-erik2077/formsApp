@@ -4,3 +4,7 @@
 ion-button {
   margin-top: 15px;
 }
+
+ion-button+ion-button {
+  margin-top: 7px;
+}

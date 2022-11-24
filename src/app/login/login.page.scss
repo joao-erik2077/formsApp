@@ -3,8 +3,10 @@
 }
 
 .esqueceu {
+  height: 2rem;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   a {
     color: #c1c1c1;
     margin-right: 1rem;
@@ -13,4 +15,12 @@
 
 ion-button {
   margin-top: 15px;
+}
+
+ion-button+ion-button {
+  margin-top: 7px;
+}
+
+img {
+  width: 100%;
 }
