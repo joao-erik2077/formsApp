@@ -9,27 +9,29 @@
 
     <img src="https://www.pngkey.com/png/full/926-9264310_o-nex-um-sistema-completo-de-gesto.png">
 
-    <ion-item>
-      <ion-label position="floating">Nome</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+    <form [formGroup]="formProduto">
+      <ion-item>
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input type="text" formControlName="nome"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Descrição</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating">Descrição</ion-label>
+        <ion-input type="text" formControlName="descricao"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Preço</ion-label>
-      <ion-input type="number"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating">Preço</ion-label>
+        <ion-input type="number" formControlName="preco"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Validade</ion-label>
-      <ion-input type="date"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Validade</ion-label>
+        <ion-input type="date" formControlName="validade"></ion-input>
+      </ion-item>
+    </form>
 
-    <ion-button size="block" color="success">CADASTRAR</ion-button>
+    <ion-button size="block" color="success" (click)="salvarCadastro()">CADASTRAR</ion-button>
     <ion-button size="block" color="danger">VOLTAR</ion-button>
   </ion-card>
 </ion-content>
