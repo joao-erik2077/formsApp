@@ -12,6 +12,7 @@ export class CadastroProdutoPage implements OnInit {
 
   formProduto: FormGroup;
   produto: Produto = new Produto();
+  produtos: Produto[];
 
   mensagens = {
     nome: [
@@ -63,4 +64,8 @@ export class CadastroProdutoPage implements OnInit {
     console.log(produtos);
   }
 
+
+  async getProdutos() {
+    this.produtos = await this.storageService.get('produtos');
+  }
 }

@@ -56,7 +56,28 @@
     </form>
 
     <ion-button size="block" color="success" (click)="salvarCadastro()">CADASTRAR</ion-button>
-    <ion-button size="block" color="primary" (click)="verProdutos()">VER PRODUTOS</ion-button>
+    <ion-button size="block" color="primary" (click)="verProdutos()" id="verProdutos">VER PRODUTOS</ion-button>
     <ion-button size="block" color="danger" routerLink="/tabs/tab1">VOLTAR</ion-button>
   </ion-card>
+
+  <ion-modal trigger="verProdutos" (willPresent)="getProdutos()">
+    <ng-template>
+      <ion-content class="ion-padding">
+        <ion-list>
+          <ion-item *ngFor="let prod of produtos">
+            <div>
+              <div>
+                <h5>{{ prod.nome.toUpperCase() }}</h5>
+                <ion-label color="medium">Validade: {{ prod.validade }}</ion-label>
+              </div>
+              <div>
+                <p>{{ prod.descricao }}</p>
+                <ion-label color="success">R${{ prod.preco }}</ion-label>
+              </div>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

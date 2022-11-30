@@ -20,3 +20,24 @@ img {
   clear: both;
   position: relative;
 }
+
+ion-modal {
+  --width: 80%;
+  --height: 80%;
+}
+
+ion-item {
+  div {
+    width: 100%;
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    div+div {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
