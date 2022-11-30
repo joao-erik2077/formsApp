@@ -13,11 +13,23 @@
       <ion-item>
         <ion-label position="floating">E-mail</ion-label>
         <ion-input type="email" formControlName="email"></ion-input>
+        <ng-container *ngFor="let erro of mensagens.email">
+          <span class="msg-erro"
+          *ngIf="formLogin.get('email').hasError(erro.tipo) && (formLogin.get('email').dirty || formLogin.get('email').touched)">
+            {{ erro.mensagem }}
+          </span>
+        </ng-container>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Senha</ion-label>
         <ion-input type="password" formControlName="senha"></ion-input>
+        <ng-container *ngFor="let erro of mensagens.senha">
+          <span class="msg-erro"
+          *ngIf="formLogin.get('senha').hasError(erro.tipo) && (formLogin.get('senha').dirty || formLogin.get('senha').touched)">
+            {{ erro.mensagem }}
+          </span>
+        </ng-container>
       </ion-item>
     </form>
 

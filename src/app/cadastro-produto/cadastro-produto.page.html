@@ -13,21 +13,45 @@
       <ion-item>
         <ion-label position="floating">Nome</ion-label>
         <ion-input type="text" formControlName="nome"></ion-input>
+        <ng-container *ngFor="let erro of mensagens.nome">
+          <span class="msg-erro"
+          *ngIf="formProduto.get('nome').hasError(erro.tipo) && (formProduto.get('nome').dirty || formProduto.get('nome').touched)">
+            {{ erro.mensagem }}
+          </span>
+        </ng-container>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Descrição</ion-label>
         <ion-input type="text" formControlName="descricao"></ion-input>
+        <ng-container *ngFor="let erro of mensagens.descricao">
+          <span class="msg-erro"
+          *ngIf="formProduto.get('descricao').hasError(erro.tipo) && (formProduto.get('descricao').dirty || formProduto.get('descricao').touched)">
+            {{ erro.mensagem }}
+          </span>
+        </ng-container>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Preço</ion-label>
         <ion-input type="number" formControlName="preco"></ion-input>
+        <ng-container *ngFor="let erro of mensagens.preco">
+          <span class="msg-erro"
+          *ngIf="formProduto.get('preco').hasError(erro.tipo) && (formProduto.get('preco').dirty || formProduto.get('preco').touched)">
+            {{ erro.mensagem }}
+          </span>
+        </ng-container>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">Validade</ion-label>
         <ion-input type="date" formControlName="validade"></ion-input>
+        <ng-container *ngFor="let erro of mensagens.validade">
+          <span class="msg-erro"
+          *ngIf="formProduto.get('validade').hasError(erro.tipo) && (formProduto.get('validade').dirty || formProduto.get('validade').touched)">
+            {{ erro.mensagem }}
+          </span>
+        </ng-container>
       </ion-item>
     </form>
 

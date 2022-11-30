@@ -10,6 +10,21 @@ export class CadastroProdutoPage implements OnInit {
 
   formProduto: FormGroup;
 
+  mensagens = {
+    nome: [
+      { tipo: 'required', mensagem: 'O campo Nome é obrigatório.' },
+    ],
+    descricao: [
+      { tipo: 'required', mensagem: 'O campo Descrição é obrigatório.' },
+    ],
+    preco: [
+      { tipo: 'required', mensagem: 'O campo Preço é obrigatório.' },
+    ],
+    validade: [
+      { tipo: 'required', mensagem: 'O campo Validade é obrigatório.' },
+    ],
+  };
+
   constructor(private formBuilder: FormBuilder) {
     this.formProduto = this.formBuilder.group({
       nome: ['', Validators.compose([Validators.required])],
