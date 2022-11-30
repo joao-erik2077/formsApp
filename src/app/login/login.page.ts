@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,7 @@ export class LoginPage implements OnInit {
     ],
   };
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private storageService: StorageService, private route: Router) {
     this.formLogin = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       senha: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(10)])]
@@ -32,8 +34,11 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  fazerLogin() {
-    console.log(`Formulário: ${this.formLogin.valid}`);
+  async fazerLogin() {
+    const dados = await this.storageService.get(this.formLogin.value.email);
+    if (dados && dados.senha === this.formLogin.value.senha) {
+      this.route.navigateByUrl('/tabs/tab1');
+    }
   }
 
 }

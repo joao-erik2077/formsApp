@@ -18,19 +18,19 @@ export class StorageService {
     this._storage = storage;
   }
 
-  public set(key: string, value: any) {
+  public async set(key: string, value: any) {
     this._storage?.set(key, value);
   }
 
-  public get(key: string) {
+  public async get(key: string) {
     return this._storage?.get(key);
   }
 
-  public remove(key: string) {
+  public async remove(key: string) {
     this._storage?.remove(key);
   }
 
-  public getAll() {
+  public async getAll() {
     const lista = [];
     this._storage.forEach((value, key, index) => {
       lista.push(value);
