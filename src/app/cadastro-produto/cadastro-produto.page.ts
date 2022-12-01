@@ -68,4 +68,13 @@ export class CadastroProdutoPage implements OnInit {
   async getProdutos() {
     this.produtos = await this.storageService.get('produtos');
   }
+
+  async deletar(produto: any) {
+    const produtos = await this.storageService.get('produtos');
+    const index = produtos.findIndex(prod => prod.nome === produto.nome);
+    console.log(index);
+    produtos.splice(index, 1);
+
+    await this.storageService.set('produtos', produtos).then(() => {this.getProdutos();});
+  }
 }

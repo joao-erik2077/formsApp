@@ -64,18 +64,28 @@
     <ng-template>
       <ion-content class="ion-padding">
         <ion-list>
-          <ion-item *ngFor="let prod of produtos">
-            <div>
+
+          <ion-item-sliding *ngFor="let prod of produtos">
+            <ion-item>
               <div>
-                <h5>{{ prod.nome.toUpperCase() }}</h5>
-                <ion-label color="medium">Validade: {{ prod.validade }}</ion-label>
+                <div>
+                  <h5>{{ prod.nome.toUpperCase() }}</h5>
+                  <ion-label color="medium">Validade: {{ prod.validade }}</ion-label>
+                </div>
+                <div>
+                  <p>{{ prod.descricao }}</p>
+                  <ion-label color="success">R${{ prod.preco }}</ion-label>
+                </div>
               </div>
-              <div>
-                <p>{{ prod.descricao }}</p>
-                <ion-label color="success">R${{ prod.preco }}</ion-label>
-              </div>
-            </div>
-          </ion-item>
+            </ion-item>
+
+            <ion-item-options side="end">
+              <ion-item-option color="danger" (click)="deletar(prod)">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+
         </ion-list>
       </ion-content>
     </ng-template>
