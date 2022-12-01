@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Produto } from '../models/Produto';
 import { StorageService } from '../services/storage.service';
+
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cadastro-produto',
   templateUrl: './cadastro-produto.page.html',
   styleUrls: ['./cadastro-produto.page.scss'],
 })
-export class CadastroProdutoPage implements OnInit {
+export class CadastroProdutoPage {
 
   formProduto: FormGroup;
   produto: Produto = new Produto();
@@ -29,7 +31,7 @@ export class CadastroProdutoPage implements OnInit {
     ],
   };
 
-  constructor(private formBuilder: FormBuilder, private storageService: StorageService) {
+  constructor(private formBuilder: FormBuilder, private storageService: StorageService, private toastController: ToastController) {
     this.formProduto = this.formBuilder.group({
       nome: ['', Validators.compose([Validators.required])],
       descricao: ['', Validators.compose([Validators.required])],
@@ -38,7 +40,15 @@ export class CadastroProdutoPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  async mostrarToast(text: string, color: string) {
+    const toast = await this.toastController.create({
+      message: text,
+      duration: 1500,
+      color: color || 'primary',
+      position: 'bottom'
+    });
+
+    await toast.present();
   }
 
   async salvarCadastro() {
@@ -56,6 +66,9 @@ export class CadastroProdutoPage implements OnInit {
       produtos.push(this.produto);
 
       await this.storageService.set('produtos', produtos);
+      this.mostrarToast('Produto cadastrado', 'success');
+    } else {
+      this.mostrarToast('Informações inválidas', 'danger');
     }
   }
 
@@ -63,7 +76,6 @@ export class CadastroProdutoPage implements OnInit {
     const produtos = await this.storageService.get('produtos');
     console.log(produtos);
   }
-
 
   async getProdutos() {
     this.produtos = await this.storageService.get('produtos');
@@ -75,6 +87,9 @@ export class CadastroProdutoPage implements OnInit {
     console.log(index);
     produtos.splice(index, 1);
 
-    await this.storageService.set('produtos', produtos).then(() => {this.getProdutos();});
+    await this.storageService.set('produtos', produtos).then(() => {
+      this.getProdutos();
+      this.mostrarToast('Produto deletado', 'danger');
+    });
   }
 }
